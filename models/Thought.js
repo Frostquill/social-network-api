@@ -4,7 +4,7 @@ const dateFormat = require('../utils/dateFormat');
 const ReactionSchema = new Schema(
     {
         reactiondId: {
-            type: Schema.Types.ObjectId,
+            type: Types.ObjectId,
             default: () =>  new Types.ObjectId()
         },
         reactionBody: {
@@ -21,6 +21,12 @@ const ReactionSchema = new Schema(
             default: Date.now,
             get: createdAtVal => dateFormat(createdAtVal)
         }
+    },
+    {
+        toJSON: {
+            getters: true
+        },
+        id: false
     }
 )
 
@@ -49,7 +55,8 @@ const ThoughtSchema = new Schema (
         toJSON: {
             virtuals: true,
             getters: true
-        }
+        },
+        id: false
     }
 )
 
